@@ -1,0 +1,66 @@
+﻿@model IEnumerable<QLBH_ltcsdl_.Models.CartItem>
+
+<div style="border: 1px solid groove; text-align: center;">
+    <h2>GIỎ HÀNG CỦA BẠN</h2>
+</div>
+
+@if (Model == null)
+{
+    <p class="text-capitalize text-info">Chưa có sản phẩm nào trong giỏ hàng !!!</p>
+    <p>
+        <a class="btn btn-info" href="@Url.Action("Index", "Home")">Đặt hàng</a>
+    </p>
+}
+
+else
+{
+    <div class="row">
+        <table class="table table-striped">
+            <tr>
+                <th>MÃ SẢN PHẨM</th>
+                <th>TÊN SẢN PHẨM</th>
+                <th>SỐ LƯỢNG SẢN PHẨM</th>
+                <th>ĐƠN GIÁ</th>
+                <th>TỔNG TIỀN</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.MaHoa</td>
+                    <td>@item.TenHoa</td>
+                    <td>
+                        <form action="" method="get">
+                            <input type="number" value="@item.SoLuong" min="1" name="txtSoluong" id="txtSoluong" />
+                            <input type="hidden" name="MaSP" value="@item.MaHoa" />
+                        </form>
+                    </td>
+                    <td>@item.DonGia</td>
+                    <td>@item.ThanhTien</td>
+                    <td>
+                        <a href="@Url.Action("Delete", new { MaHoa = item.MaHoa })"
+                           onclick="return confirm('Bạn chắc chắn muốn xóa mặt hàng này?')" class="btn btn-danger">Xóa</a>
+
+                    </td>
+                </tr>
+            }
+            <tr>
+                <th></th>
+                <th>TỔNG SỐ LƯỢNG</th>
+                <th>@Model.Sum(m => m.SoLuong)</th>
+                <th>TỔNG THÀNH TIỀN</th>
+                <th>@Model.Sum(m => m.ThanhTien).ToString("#,###") đồng</th>
+                <th></th>
+            </tr>
+            <tr>
+
+            </tr>
+        </table>
+    </div>
+
+<div class="col-md-offset-2 col-md-10">
+    <a class="btn btn-info" href="@Url.Action("Index", "Home")">Tiếp tục đặt hàng</a>
+    <a class="btn btn-success" href="@Url.Action("Contact", "Home")">Xác nhận đặt hàng</a>
+</div>
+
+}

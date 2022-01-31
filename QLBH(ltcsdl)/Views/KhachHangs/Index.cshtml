@@ -1,0 +1,51 @@
+﻿@model IEnumerable<QLBH_ltcsdl_.Models.KhachHang>
+
+<div style="border: 1px solid groove; text-align: center;">
+    <h2>THÔNG TIN KHÁCH HÀNG</h2>
+</div>
+
+<p>
+    @Html.ActionLink("Tạo mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenKH)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SoDienThoai)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenKH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaChi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoDienThoai)
+        </td>
+        <td>
+            <a class="btn btn-info" href="@Url.Action("Edit", "KhachHangs", new { id = item.MaKH })">
+                Sửa
+            </a>
+            <a href="@Url.Action("Delete", new { id = item.MaKH })"
+               onclick="return confirm('Hệ thống cho biết đối tượng này sẽ được xóa !!!')" class="btn btn-danger">Xóa</a>
+        </td>
+    </tr>
+}
+
+</table>

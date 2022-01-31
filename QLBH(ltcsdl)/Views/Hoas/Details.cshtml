@@ -1,0 +1,53 @@
+﻿@model QLBH_ltcsdl_.Models.Hoa
+@using QLBH_ltcsdl_.Models 
+
+<div style="border: 1px solid groove; text-align: center;">
+    <h2>CHI TIẾT SẢN PHẨM</h2>
+</div>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenHoa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenHoa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonGia)
+        </dt>
+
+        <dd>
+            @string.Format("{0:0,### vnđ}", Model.DonGia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TheLoai.TenLoaiHoa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TheLoai.TenLoaiHoa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhAnh)
+        </dt>
+
+        <dd>
+            @Html.Image("../../" + Model.HinhAnh, "", "100", "150")
+        </dd>
+
+        <dd>
+            <br />
+            <a class="btn btn-info" href="@Url.Action("AddToCart", "GioHangs", new { MaHoa = Model.MaHoa})">
+                <span class="glyphicon glyphicon-shopping-cart"></span>Thêm vào giỏ hàng
+            </a>
+        </dd>
+    </dl>
+</div>
+<p>
+    <a class="btn btn-default" href="@Url.Action("Index", "Home")"> Quay lại</a>
+</p>

@@ -1,0 +1,55 @@
+﻿@model QLBH_ltcsdl_.Models.Hoa
+@using QLBH_ltcsdl_.Models
+
+<h2>XÓA SẢN PHẨM</h2>
+
+<h3>
+    BẠN CHẮC CHẮN MUỐN XÓA ĐỐI TƯỢNG NÀY?
+</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenHoa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenHoa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DonGia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DonGia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HinhAnh)
+        </dt>
+
+        <dd>
+            @*@Html.DisplayFor(model => model.HinhAnh)*@
+            @Html.Image("../../" + Model.HinhAnh, "", "80", "100")
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TheLoai.TenLoaiHoa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TheLoai.TenLoaiHoa)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> 
+            <a class="btn btn-default" href="@Url.Action("Index", "Hoas")">Quay lại</a>
+        </div>
+    }
+</div>

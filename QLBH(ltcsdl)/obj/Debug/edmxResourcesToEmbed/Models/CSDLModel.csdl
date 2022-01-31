@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBDoAn_Nhom16Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ChiTietHoaDon">
+    <Key>
+      <PropertyRef Name="MaHoaDon" />
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaHoaDon" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaHoa" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="GiamGia" Type="Single" />
+    <Property Name="ThanhTien" Type="Double" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="Ngay" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Hoa" Relationship="Self.FK_tb_ChiTietHoaDon_tb_Hoa" FromRole="ChiTietHoaDon" ToRole="Hoa" />
+    <NavigationProperty Name="KhachHang" Relationship="Self.FK_tb_ChiTietHoaDon_tb_KhachHang" FromRole="ChiTietHoaDon" ToRole="KhachHang" />
+  </EntityType>
+  <EntityType Name="GioHang">
+    <Key>
+      <PropertyRef Name="MaGioHang" />
+    </Key>
+    <Property Name="MaGioHang" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaHoa" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="DonGia" Type="Double" />
+    <NavigationProperty Name="Hoa" Relationship="Self.FK_tb_GioHang_tb_Hoa" FromRole="GioHang" ToRole="Hoa" />
+  </EntityType>
+  <EntityType Name="Hoa">
+    <Key>
+      <PropertyRef Name="MaHoa" />
+    </Key>
+    <Property Name="MaHoa" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenHoa" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MaTheLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Dongia" Type="Double" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="NhaCungCap" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Anh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK_tb_ChiTietHoaDon_tb_Hoa" FromRole="Hoa" ToRole="ChiTietHoaDon" />
+    <NavigationProperty Name="GioHangs" Relationship="Self.FK_tb_GioHang_tb_Hoa" FromRole="Hoa" ToRole="GioHang" />
+    <NavigationProperty Name="TheLoai" Relationship="Self.FK_tb_Hoa_tb_TheLoai" FromRole="Hoa" ToRole="TheLoai" />
+  </EntityType>
+  <EntityType Name="HoaDon">
+    <Key>
+      <PropertyRef Name="MaHoaDon" />
+    </Key>
+    <Property Name="MaHoaDon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="TongTien" Type="Double" />
+    <Property Name="MaKhachHang" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="KhachHang" Relationship="Self.FK_tb_HoaDon_tb_KhachHang" FromRole="HoaDon" ToRole="KhachHang" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenKH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="SoDienThoai" Type="Int32" />
+    <NavigationProperty Name="ChiTietHoaDons" Relationship="Self.FK_tb_ChiTietHoaDon_tb_KhachHang" FromRole="KhachHang" ToRole="ChiTietHoaDon" />
+    <NavigationProperty Name="HoaDons" Relationship="Self.FK_tb_HoaDon_tb_KhachHang" FromRole="KhachHang" ToRole="HoaDon" />
+  </EntityType>
+  <EntityType Name="TheLoai">
+    <Key>
+      <PropertyRef Name="MaTheLoai" />
+    </Key>
+    <Property Name="MaTheLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenTheLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Hoas" Relationship="Self.FK_tb_Hoa_tb_TheLoai" FromRole="TheLoai" ToRole="Hoa" />
+  </EntityType>
+  <Association Name="FK_tb_ChiTietHoaDon_tb_Hoa">
+    <End Role="Hoa" Type="Self.Hoa" Multiplicity="0..1" />
+    <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hoa">
+        <PropertyRef Name="MaHoa" />
+      </Principal>
+      <Dependent Role="ChiTietHoaDon">
+        <PropertyRef Name="MaHoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_ChiTietHoaDon_tb_KhachHang">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="1" />
+    <End Role="ChiTietHoaDon" Type="Self.ChiTietHoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="ChiTietHoaDon">
+        <PropertyRef Name="MaKH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_GioHang_tb_Hoa">
+    <End Role="Hoa" Type="Self.Hoa" Multiplicity="0..1" />
+    <End Role="GioHang" Type="Self.GioHang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Hoa">
+        <PropertyRef Name="MaHoa" />
+      </Principal>
+      <Dependent Role="GioHang">
+        <PropertyRef Name="MaHoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_Hoa_tb_TheLoai">
+    <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="0..1" />
+    <End Role="Hoa" Type="Self.Hoa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TheLoai">
+        <PropertyRef Name="MaTheLoai" />
+      </Principal>
+      <Dependent Role="Hoa">
+        <PropertyRef Name="MaTheLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tb_HoaDon_tb_KhachHang">
+    <End Role="KhachHang" Type="Self.KhachHang" Multiplicity="0..1" />
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KhachHang">
+        <PropertyRef Name="MaKH" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="MaKhachHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBDoAn_Nhom16Entities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ChiTietHoaDons" EntityType="Self.ChiTietHoaDon" />
+    <EntitySet Name="GioHangs" EntityType="Self.GioHang" />
+    <EntitySet Name="Hoas" EntityType="Self.Hoa" />
+    <EntitySet Name="HoaDons" EntityType="Self.HoaDon" />
+    <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+    <EntitySet Name="TheLoais" EntityType="Self.TheLoai" />
+    <AssociationSet Name="FK_tb_ChiTietHoaDon_tb_Hoa" Association="Self.FK_tb_ChiTietHoaDon_tb_Hoa">
+      <End Role="Hoa" EntitySet="Hoas" />
+      <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_ChiTietHoaDon_tb_KhachHang" Association="Self.FK_tb_ChiTietHoaDon_tb_KhachHang">
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+      <End Role="ChiTietHoaDon" EntitySet="ChiTietHoaDons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_GioHang_tb_Hoa" Association="Self.FK_tb_GioHang_tb_Hoa">
+      <End Role="Hoa" EntitySet="Hoas" />
+      <End Role="GioHang" EntitySet="GioHangs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_Hoa_tb_TheLoai" Association="Self.FK_tb_Hoa_tb_TheLoai">
+      <End Role="TheLoai" EntitySet="TheLoais" />
+      <End Role="Hoa" EntitySet="Hoas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tb_HoaDon_tb_KhachHang" Association="Self.FK_tb_HoaDon_tb_KhachHang">
+      <End Role="KhachHang" EntitySet="KhachHangs" />
+      <End Role="HoaDon" EntitySet="HoaDons" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

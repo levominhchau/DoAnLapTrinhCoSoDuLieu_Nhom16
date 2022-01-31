@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7b22976601664eb3aacc751f16dc937f" Name="Diagram1">
+        <EntityTypeShape EntityType="DBDoAn_Nhom16Model.ChiTietHoaDon" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDoAn_Nhom16Model.Hoa" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDoAn_Nhom16Model.HoaDon" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDoAn_Nhom16Model.KhachHang" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDoAn_Nhom16Model.sysdiagram" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBDoAn_Nhom16Model.TheLoai" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <AssociationConnector Association="DBDoAn_Nhom16Model.FK_ChiTietHoaDon_Hoa" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDoAn_Nhom16Model.FK_ChiTietHoaDon_HoaDon" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDoAn_Nhom16Model.FK_Hoa_TheLoai" ManuallyRouted="false" />
+        <AssociationConnector Association="DBDoAn_Nhom16Model.FK_HoaDon_KhachHang" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

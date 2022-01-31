@@ -1,0 +1,49 @@
+﻿@model IEnumerable<QLBH_ltcsdl_.Models.HoaDon>
+
+<div style="border: 1px solid groove; text-align: center;">
+    <h2>HÓA ĐƠN BÁN HÀNG</h2>
+</div>
+
+<p>
+    @Html.ActionLink("Tạo mới", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MaHoaDon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayLapHD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KhachHang.TenKH)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                <a href="@Url.Action("Index", "ChiTietHoaDons", new { mahd = item.MaHoaDon})">@Html.DisplayFor(modelItem => item.MaHoaDon)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayLapHD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KhachHang.TenKH)
+            </td>
+            <td>
+                <a class="btn btn-info" href="@Url.Action("Edit", "HoaDons", new { id = item.MaHoaDon })">
+                    Sửa
+                </a>
+                <a href="@Url.Action("Delete", new { id = item.MaHoaDon })"
+                   onclick="return confirm('Hệ thống cho biết đối tượng này sẽ được xóa !!!')" class="btn btn-danger">Xóa</a>
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    <a class="btn btn-info" href="@Url.Action("Index", "Home")">Quay lại</a>
+</p>
